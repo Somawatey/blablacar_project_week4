@@ -4,7 +4,8 @@
 enum Country {
   france('France'),
   uk('United Kingdom'),
-  spain('Spain');
+  spain('Spain'),
+  cambodia('Cambodia');
 
   final String name;
 
@@ -36,7 +37,7 @@ class Location {
 
   @override
   String toString() {
-    return name;
+    return name+ ' in ' + country.name;
   }
 }
 
