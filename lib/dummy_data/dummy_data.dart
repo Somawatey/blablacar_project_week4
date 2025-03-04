@@ -1,3 +1,5 @@
+import 'package:blablacar_project_week4/service/rides_service.dart';
+
 import '../model/ride/locations.dart';
 import '../model/ride/ride.dart';
 import '../model/ride_pref/ride_pref.dart';
@@ -178,5 +180,7 @@ List<Ride> fakeRides = List.generate(50, (index) {
     driver: driver,
     availableSeats: availableSeats,
     pricePerSeat: pricePerSeat,
+    petAccepted: RidesFilter(acceptPets: random.nextBool()),
+    duration: arrivalTime.difference(departureTime),
   );
 });

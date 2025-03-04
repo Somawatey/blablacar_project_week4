@@ -1,4 +1,5 @@
 import 'package:blablacar_project_week4/model/ride/locations.dart';
+import 'package:blablacar_project_week4/service/rides_service.dart';
 import '../../utils/date_time_util.dart';
 import '../user/user.dart';
 
@@ -15,6 +16,8 @@ enum RideStatus {
 class Ride {
   final Location departureLocation;
   final DateTime departureDate;
+  final Duration duration;
+  final RidesFilter petAccepted;
 
   final Location arrivalLocation;
   final DateTime arrivalDateTime;
@@ -36,6 +39,9 @@ class Ride {
     required this.driver,
     required this.availableSeats,
     required this.pricePerSeat,
+    required this .petAccepted,
+    required this.duration,
+
   });
 
   void addPassenger(User passenger) {

@@ -1,4 +1,5 @@
 import 'package:blablacar_project_week4/model/ride_pref/ride_pref.dart';
+import 'package:blablacar_project_week4/repository/ride_repository.dart';
 import '../dummy_data/dummy_data.dart';
 import '../model/ride/ride.dart';
 
@@ -8,16 +9,33 @@ import '../model/ride/ride.dart';
 ///
 class RidesService {
 
-  static List<Ride> availableRides = fakeRides;  
+  //static List<Ride> availableRides = fakeRides;  
 
+  static final RidesService _instance = RidesService._internal();
+  late RidesRepository _repository;
 
+  factory RidesService() {
+    return _instance;
+  }
+  //private constructor
+  RidesService._internal();
+
+  // Initializer method to set the repository
+  void initializeRepository(RidesRepository repository) {
+    _repository = repository;
+  }
   ///
   ///  Return the relevant rides, given the passenger preferences
   ///
-  static List<Ride> getRidesFor(RidePreference preferences) {
- 
-    // For now, just a test
-    return availableRides.where( (ride) => ride.departureLocation == preferences.departure && ride.arrivalLocation == preferences.arrival).toList();
+  List<Ride> getRides(RidePreference preference, RidesFilter? filter) {
+
+     return _repository.getRides(preference, filter);
   }
  
+}
+
+class RidesFilter {
+  final bool acceptPets;
+  
+  RidesFilter({this.acceptPets = false});
 }

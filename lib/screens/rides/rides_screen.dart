@@ -24,7 +24,8 @@ class _RidesScreenState extends State<RidesScreen> {
  
   RidePreference currentPreference  = fakeRidePrefs[0];   // TODO 1 :  We should get it from the service
 
-  List<Ride> get matchingRides => RidesService.getRidesFor(currentPreference);
+  final RidesService ridesService = RidesService();//why we need to create a new instance of RidesService() here?Answer: We need to create a new instance of RidesService() here because we need to access the getRides() method from the RidesService class.
+  List<Ride> get matchingRides => ridesService.getRides(currentPreference, null);
 
   void onBackPressed() {
     Navigator.of(context).pop();     //  Back to the previous view
